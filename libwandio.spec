@@ -1,24 +1,6 @@
-#
-# spec file for package libwandio
-#
-# Copyright (c) 2016, Martin Hauke <mardnh@gmx.de>
-#
-# All modifications and additions to the file contributed by third parties
-# remain the property of their copyright owners, unless otherwise agreed
-# upon. The license for this file, and modifications and additions to the
-# file, is the same license as for the pristine package itself (unless the
-# license for the pristine package is not an Open Source License, in which
-# case the license is the MIT License). An "Open Source License" is a
-# license that conforms to the Open Source Definition (Version 1.9)
-# published by the Open Source Initiative.
-
-# Please submit bugfixes or comments via http://bugs.opensuse.org/
-#
-
-
 Name:           libwandio
 Version:        1.0.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Multi-threaded file compression and decompression library
 License:        GPL-2.0
 Group:          System/Libraries
@@ -34,7 +16,10 @@ BuildRequires:  lzo-devel
 BuildRequires:  make
 BuildRequires:  xz-devel
 BuildRequires:  zlib-devel
-#BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+
+Requires:       bzip2
+Requires:       zlib
+Requires:       libcurl >= 7.18.0
 
 %description
 File I/O library that will read and write both compressed and uncompressed
@@ -91,6 +76,9 @@ find %{buildroot} -type f -name "*.la" -delete -print
 %{_includedir}/wandio.h
 
 %changelog
+* Fri Oct 14 2016 John Siegrist <john@complects.com> - 1.0.4-2
+- Updated the package Requirements
+
 * Fri Oct 14 2016 John Siegrist <john@complects.com> - 1.0.4-1
 - Modifications for Fedora 24 and CentOS 7 packages.
 
